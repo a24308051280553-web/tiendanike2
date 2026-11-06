@@ -1,35 +1,11 @@
 <?php
 include("conexion.php");
-
-$mensaje = "";
-
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $correo = $_POST['correo'];
-    $password = $_POST['password'];
-
-    
-    $sql = "SELECT * FROM usuarios WHERE correo = '$correo' AND password = '$password'";
-    $resultado = $conexion->query($sql);
-
-    if ($resultado->num_rows > 0) {
-        echo "<script>
-                alert('¡Inicio de sesión exitoso! Bienvenido a NIKE.');
-                window.location.href = 'calzado.php';
-              </script>";
-        exit();
-    } else {
-        $mensaje = "<p style='color: red; text-align: center; font-weight: bold;'>Correo o contraseña incorrectos.</p>";
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>NIKE - Iniciar Sesión</title>
-    
-    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -174,27 +150,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-    
     <header>
         <h1>NIKE</h1>
         <p>Tu tienda en línea de calzado y ropa</p>
     </header>
 
-    
     <nav>
         <a href="index.php">Inicio</a>
         <a href="calzado.php">Calzado</a>
         <a href="ropa.php">Ropa</a>
     </nav>
 
-    
     <main>
         <section id="login">
             <h2>Iniciar Sesión</h2>
 
-            <?php echo $mensaje; ?>
-
-            <form action="miketienda.php" method="POST">
+            <form action="login.php" method="POST">
                 <p>
                     <label for="correo">Correo Electrónico:</label>
                     <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
@@ -223,7 +194,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </section>
     </main>
 
-  
     <footer>
         <p>Carlos Oziel Hernandez Garcia | 5°I | 0553</p>
     </footer>
